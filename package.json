@@ -1,5 +1,5 @@
 {
- "name": "typed-immutable",
+  "name": "typescript-immutable",
  "version": "0.1.0",
  "description": "Small TS implementation of immutables (Map, Record)",
  "repository": "https://github.com/JohannesLamberts/typescript-immutable",

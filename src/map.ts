@@ -1,30 +1,37 @@
-import { Immutables } from './types';
+import { Immutable } from './immutable';
 
-class IMap<TKeys extends string, TInterface extends Immutables> {
+export abstract class ImmutableMapAbstract<TKeys extends string,
+    TInterface,
+    TThis extends ImmutableMapAbstract<TKeys, TInterface, TThis>> extends Immutable {
 
-    private _data: Partial<Record<TKeys, TInterface>> = {};
-    private _d = new Map();
+    protected _data: Partial<Record<TKeys, TInterface>> = {};
 
-    constructor(private _nv: TInterface) {
+    get(key: TKeys): TInterface | undefined {
+        return this._data[key];
     }
 
-    get(key: TKeys): TInterface {
-        return (this._data[key] as TInterface) || this._nv;
-    }
-
-    set(key: TKeys, value: TInterface): IMap<TKeys, TInterface> {
+    set(key: TKeys,
+        value: TInterface): TThis {
         const partial: Partial<Record<TKeys, TInterface>> = {};
         partial[key] = value;
         return this.setMany(partial);
     }
 
-    setMany(keyValues: Partial<Record<TKeys, TInterface>>): IMap<TKeys, TInterface> {
+    setMany(keyValues: Partial<Record<TKeys, TInterface>>): TThis {
         return this._clone(keyValues);
     }
 
     update(key: TKeys,
-           cb: (currVal: TInterface) => TInterface): IMap<TKeys, TInterface> {
+           cb: (currVal: TInterface | undefined) => TInterface): TThis {
         return this.set(key, cb(this.get(key)));
+    }
+
+    map(cb: (currVal: TInterface) => TInterface): TThis {
+        const newData: Partial<Record<TKeys, TInterface>> = {} = {};
+        for (const key of Object.keys(this._data) as TKeys[]) {
+            newData[key] = cb(this._data[key] as TInterface);
+        }
+        return this.setMany(newData);
     }
 
     clear() {
@@ -38,11 +45,5 @@ class IMap<TKeys extends string, TInterface extends Immutables> {
                      .map((key: TKeys) => this._data[key] as TInterface);
     }
 
-    private _clone(update: Partial<Record<TKeys, TInterface>> = {}): IMap<TKeys, TInterface> {
-        const rec = new IMap<TKeys, TInterface>(this._nv as any);
-        rec._data = Object.assign({}, this._data, update);
-        return rec;
-    }
+    protected abstract _clone(update?: Partial<Record<TKeys, TInterface>>): TThis;
 }
-
-export default IMap;

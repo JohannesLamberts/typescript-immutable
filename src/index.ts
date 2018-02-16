@@ -1,3 +1,3 @@
-export { default as ImmutableMap }      from './map';
-export { default as ImmutableMapUndef } from './mapUndef';
-export { default as ImmutableRecord }   from './record';
+export { ImmutableMap }      from './mapDef';
+export { ImmutableMapUndef } from './mapUndef';
+export { ImmutableRecord }   from './record';
