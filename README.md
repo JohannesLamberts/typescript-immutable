@@ -8,9 +8,9 @@ The main problem was to
 - handle potentially undefined elements in a `Map`
   (in immtable.js you can define a `notSetValue` parameter in `get()` and `update()` but not on instantiation)
 
-
-- This package implements Maps and Records. It does not yet implement immutable Arrays.
-- This package doesn't not have any dependencies.
+This package
+- implements Maps and Records. It does not yet implement immutable Arrays.
+- doesn't not have any dependencies.
 
 ## Features
 - Full type-safety
