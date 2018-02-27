@@ -1,24 +1,24 @@
 {
   "name": "typescript-immutable",
- "version": "0.1.0",
- "description": "Small TS implementation of immutables (Map, Record)",
- "repository": "https://github.com/JohannesLamberts/typescript-immutable",
- "keywords": [
-  "cms",
-  "react",
-  "jam",
-  "node"
- ],
- "main": "build/index.js",
- "types": "build/index.d.ts",
- "author": "Johannes Lamberts <info@j-lamberts.de> (http://j-lamberts.de)",
- "license": "MIT",
- "scripts": {
-  "build": "rimraf build && tslint -p ./tsconfig.json && tsc -p ./tsconfig.json"
- },
- "dependencies": {},
- "devDependencies": {
-  "tslint": "^5.9.1",
-  "typescript": "^2.6.2"
- }
+  "version": "0.1.0",
+  "description": "Small TS implementation of immutables (Map, Record)",
+  "repository": "https://github.com/JohannesLamberts/typescript-immutable",
+  "keywords": [
+    "cms",
+    "react",
+    "jam",
+    "node"
+  ],
+  "main": "build/index.js",
+  "types": "build/index.d.ts",
+  "author": "Johannes Lamberts <info@j-lamberts.de> (http://j-lamberts.de)",
+  "license": "MIT",
+  "scripts": {
+    "build": "rimraf build && tslint -p ./tsconfig.json && tsc -p ./tsconfig.json"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "tslint": "^5.9.1",
+    "typescript": "^2.6.2"
+  }
 }
