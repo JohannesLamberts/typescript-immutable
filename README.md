@@ -1,8 +1,6 @@
 <h1 align="center">typescript-immutable</h1>
 
-<div align="center">
 [![CircleCI](https://img.shields.io/circleci/project/github/JohannesLamberts/typescript-immutable/master.svg)](https://circleci.com/gh/JohannesLamberts/typescript-immutable)
-</div>
 
 
 [immutable.js](https://facebook.github.io/immutable-js/) is a library for immutable data structures.
