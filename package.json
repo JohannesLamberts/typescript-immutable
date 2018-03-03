@@ -1,13 +1,17 @@
 {
   "name": "typescript-immutable",
-  "version": "0.1.0",
-  "description": "Small TS implementation of immutables (Map, Record)",
+  "version": "0.1.1",
+  "description": "Small TS implementation of immutables (Map, Record, Array)",
   "repository": "https://github.com/JohannesLamberts/typescript-immutable",
   "keywords": [
     "cms",
     "react",
     "jam",
-    "node"
+    "node",
+    "immutable",
+    "map",
+    "record",
+    "array"
   ],
   "main": "build/index.js",
   "types": "build/index.d.ts",

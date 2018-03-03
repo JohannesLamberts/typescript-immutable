@@ -10,6 +10,14 @@ export abstract class ImmutableMapAbstract<TKeys extends string,
         return this._data[key];
     }
 
+    remove(keys: TKeys[]) {
+        const clone = this._clone();
+        for (const key of keys) {
+            delete clone._data[key];
+        }
+        return clone;
+    }
+
     set(key: TKeys,
         value: TInterface): TThis {
         const partial: Partial<Record<TKeys, TInterface>> = {};
@@ -26,10 +34,10 @@ export abstract class ImmutableMapAbstract<TKeys extends string,
         return this.set(key, cb(this.get(key)));
     }
 
-    map(cb: (currVal: TInterface) => TInterface): TThis {
+    map(cb: (currVal: TInterface, key: TKeys) => TInterface): TThis {
         const newData: Partial<Record<TKeys, TInterface>> = {} = {};
         for (const key of Object.keys(this._data) as TKeys[]) {
-            newData[key] = cb(this._data[key] as TInterface);
+            newData[key] = cb(this._data[key] as TInterface, key);
         }
         return this.setMany(newData);
     }
