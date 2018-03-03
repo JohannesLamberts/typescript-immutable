@@ -9,7 +9,7 @@ The main problem was to
   (in immtable.js you can define a `notSetValue` parameter in `get()` and `update()` but not on instantiation)
 
 This package
-- implements Maps and Records. It does not yet implement immutable Arrays.
+- implements Maps, Records and Arrays.
 - doesn't not have any dependencies.
 
 ## Features
@@ -99,5 +99,26 @@ Record.withMutations(currData => {
 });
 ```
 
+# ImmutableArray
 
- 
+```typescript
+import {
+    ImmutableArray
+} from './src';
+
+const Arr = new ImmutableArray([1, 2]);
+
+Arr.get(0);                     // 1;
+Arr.length;                     // 2
+Arr.get(3);                     // undefined
+Arr.push(4, 8);                 // ImmutableArray([1, 2, 4, 8])
+Arr.length;                     // 4
+Arr.map(val => val * 2);        // ImmutableArray([2, 4, 8, 16])
+Arr.filter(val => val < 9);     // ImmutableArray([2, 4, 8])
+Arr.set(2, 3);                  // ImmutableArray([2, 3, 8])
+Arr.update(2, val => val - 4);  // ImmutableArray([2, 3, 4])
+Arr.slice();                    // [2, 3, 4]
+Arr.indexOf(3);                 // 1
+Arr.indexOfFn(val => val > 2);  // 1
+Arr.remove(1);                  // ImmutableArray([2, 4])
+```
