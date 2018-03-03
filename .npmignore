@@ -1,6 +1,0 @@
-src
-.idea
-.gitignore
-tsconfig.json
-tslint.json
-.circleci

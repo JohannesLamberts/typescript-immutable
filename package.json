@@ -1,6 +1,6 @@
 {
   "name": "typescript-immutable",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Small TS implementation of immutables (Map, Record, Array)",
   "repository": "https://github.com/JohannesLamberts/typescript-immutable",
   "keywords": [
@@ -12,6 +12,9 @@
     "map",
     "record",
     "array"
+  ],
+  "files": [
+    "build/**"
   ],
   "main": "build/index.js",
   "types": "build/index.d.ts",
