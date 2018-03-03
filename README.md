@@ -1,5 +1,12 @@
 <h1 align="center">typescript-immutable</h1>
 
+<div align="center">
+
+[![CircleCI](https://img.shields.io/circleci/project/github/JohannesLamberts/typescript-immutable/master.svg)]()
+
+</div>
+
+
 [immutable.js](https://facebook.github.io/immutable-js/) is a library for immutable data structures.
 However, I had a lot of trouble using immutable.js with Typescript.
 
