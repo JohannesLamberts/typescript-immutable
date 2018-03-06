@@ -23,8 +23,7 @@
   "scripts": {
     "build": "rimraf build && tslint -p ./tsconfig.json && tsc -p ./tsconfig.json",
     "test": "mocha --require ts-node/register --require source-map-support/register --recursive src/**/*test.ts",
-    "test.record": "nyc yarn test --include src/**/*.ts",
-    "test.report.html": "nyc report --reporter=html"
+    "test.record": "nyc yarn test && nyc report && nyc report --reporter=text-lcov > coverage.lcov"
   },
   "devDependencies": {
     "@types/chai": "^4.1.2",
@@ -48,8 +47,11 @@
     ],
     "exclude": [
       "**/*.d.ts",
-      "build"
+      "build",
+      "coverage"
     ],
-    "all": true
+    "reporter": [
+      "html"
+    ]
   }
 }

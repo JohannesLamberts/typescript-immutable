@@ -7,6 +7,7 @@
 **/node_modules
 
 # environment
+*.log
 **/_local_data
 *.local.json
 *.local
