@@ -1,3 +1,3 @@
-export class Immutable {
+export abstract class Immutable {
     readonly isImmutable = true;
 }
