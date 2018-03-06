@@ -21,9 +21,7 @@ install_and_build: &install_and_build
   - save_cache:
       key: checkout-{{ .Branch }}-{{ .Revision }}
       paths:
-        - ~/}}-{{ .Revision }}
-      paths:
-        - ~/
+        - ~/tmp
 test: &test
   - restore_cache:
       keys:
@@ -38,21 +36,21 @@ version: 2
 jobs:
   checkout:
     <<: *default
-    working_directory: ~/
+    working_directory: ~/tmp
     steps:
       - checkout
       - save_cache:
           key: checkout-{{ .Branch }}-{{ .Revision }}
           paths:
-            - ~/
+            - ~/tmp
   build:
     <<: *default
-    working_directory: ~/
+    working_directory: ~/tmp
     steps:
       *install_and_build
   test:
     <<: *default
-    working_directory: ~/
+    working_directory: ~/tmp
     steps:
       *test
 workflows:
