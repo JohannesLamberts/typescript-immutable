@@ -1,6 +1,7 @@
 default: &default
   docker:
     - image: circleci/node:8.9.1
+  working_directory: ~/tmp
 install_and_build: &install_and_build
   - restore_cache:
       keys:
@@ -31,7 +32,6 @@ version: 2
 jobs:
   checkout:
     <<: *default
-    working_directory: ~/tmp
     steps:
       - checkout
       - save_cache:
@@ -40,12 +40,10 @@ jobs:
             - ~/tmp
   build:
     <<: *default
-    working_directory: ~/tmp
     steps:
       *install_and_build
   test:
     <<: *default
-    working_directory: ~/tmp
     steps:
       *test
 workflows:
