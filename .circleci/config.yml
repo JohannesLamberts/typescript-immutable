@@ -5,8 +5,6 @@ install_and_build: &install_and_build
   - restore_cache:
       keys:
         - checkout-{{ .Branch }}-{{ .Revision }}
-  - restore_cache:
-      keys:
         - npm-cache-{{ checksum "package.json" }}
   - run:
       name: Install
@@ -29,9 +27,6 @@ test: &test
   - run:
       name: Test
       command: yarn test.record
-  - run:
-      name: Report
-      command: yarn nyc report --reporter=text-lcov > coverage.lcov && codecov -t $CODECOV_TOKEN
 version: 2
 jobs:
   checkout:
