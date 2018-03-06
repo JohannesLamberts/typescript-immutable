@@ -7,6 +7,7 @@
 **/node_modules
 
 # environment
+*.log
 **/_local_data
 *.local.json
 *.local
@@ -14,6 +15,8 @@
 .idea
 
 # misc
+.nyc_output
+coverage
 coverage.lcov
 npm-debug.log
 
