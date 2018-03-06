@@ -23,7 +23,7 @@
   "scripts": {
     "build": "rimraf build && tslint -p ./tsconfig.json && tsc -p ./tsconfig.json",
     "test": "mocha --require ts-node/register --require source-map-support/register --recursive src/**/*test.ts",
-    "test.record": "nyc npm test --include src/**/*.ts",
+    "test.record": "nyc yarn test --include src/**/*.ts",
     "test.report.html": "nyc report --reporter=html"
   },
   "devDependencies": {
