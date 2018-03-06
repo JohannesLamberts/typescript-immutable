@@ -15,9 +15,7 @@ export class ImmutableRecord<TInterface> extends Immutable {
 
     set<TKey extends keyof TInterface>(key: TKey,
                                        value: TInterface[TKey]): ImmutableRecord<TInterface> {
-        const partial: Partial<TInterface> = {};
-        partial[key] = value;
-        return this._clone(partial);
+        return this.withMutations(currData => currData[key] = value);
     }
 
     update<TKey extends keyof TInterface>
@@ -34,12 +32,18 @@ export class ImmutableRecord<TInterface> extends Immutable {
     }
 
     replace(data: TInterface) {
-        return this._clone(data);
+        const rec = new ImmutableRecord<TInterface>(this._initial);
+        rec._data = data;
+        return rec;
     }
 
-    private _clone(update: Partial<TInterface> = {}): ImmutableRecord<TInterface> {
+    shallow() {
+        return Object.assign({}, this._data);
+    }
+
+    private _clone(): ImmutableRecord<TInterface> {
         const rec = new ImmutableRecord<TInterface>(this._initial);
-        rec._data = Object.assign({}, this._data, update);
+        rec._data = this.shallow();
         return rec;
     }
 }
