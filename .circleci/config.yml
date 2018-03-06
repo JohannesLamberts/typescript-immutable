@@ -1,21 +1,10 @@
 default: &default
   docker:
-    - image: circleci/node:8.9.1
-checkout: &checkout
-  - checkout
-save: &save
-  - save_cache:
-      key: checkout-{{ .Branch }}-{{ .Revision }}
-      paths:
-        - ~/tmp
-restore: &restore
-  - restore_cache:
-      keys:
-        - checkout-{{ .Branch }}-{{ .Revision }}
+    image: circleci/node:8.9.1
 install_and_build: &install_and_build
   - restore_cache:
       keys:
-        - npm-cache-{{ checksum "package.json" }}
+        - checkout-{{ .Branch }}-{{ .Revision }}
   - run:
       name: Install
       command: npm i
@@ -27,10 +16,17 @@ install_and_build: &install_and_build
       name: Build
       command: npm run build
   - save_cache:
-      key: npm-cache-{{ checksum "package.json" }}
+      key: checkout-{{ .Branch
+  - save_cache:
+      key: checkout-{{ .Branch }}-{{ .Revision }}
       paths:
-        - node_modules
+        - ~/tmp}}-{{ .Revision }}
+      paths:
+        - ~/tmp
 test: &test
+  - restore_cache:
+      keys:
+        - checkout-{{ .Branch }}-{{ .Revision }}
   - run:
       name: Test
       command: npm run test.record
@@ -43,17 +39,21 @@ jobs:
     <<: *default
     working_directory: ~/tmp
     steps:
-      [*checkout, *save]
+      - checkout
+      - save_cache:
+          key: checkout-{{ .Branch }}-{{ .Revision }}
+          paths:
+            - ~/tmp
   build:
     <<: *default
     working_directory: ~/tmp
     steps:
-      [*restore, *install_and_build, *save]
+      *install_and_build
   test:
     <<: *default
     working_directory: ~/tmp
     steps:
-      [*restore, *test]
+      *test
 workflows:
   version: 2
   build-all:
