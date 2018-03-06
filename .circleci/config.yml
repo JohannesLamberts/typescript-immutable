@@ -1,22 +1,23 @@
 default: &default
   docker:
-    image: circleci/node:8.9.1
+    - image: circleci/node:8.9.1
 install_and_build: &install_and_build
   - restore_cache:
       keys:
         - checkout-{{ .Branch }}-{{ .Revision }}
+  - restore_cache:
+      keys:
+        - npm-cache-{{ checksum "package.json" }}
   - run:
       name: Install
-      command: npm i
+      command: yarn install
   - save_cache:
       key: npm-cache-{{ checksum "package.json" }}
       paths:
         - node_modules
   - run:
       name: Build
-      command: npm run build
-  - save_cache:
-      key: checkout-{{ .Branch
+      command: yarn build
   - save_cache:
       key: checkout-{{ .Branch }}-{{ .Revision }}
       paths:
@@ -29,10 +30,10 @@ test: &test
         - checkout-{{ .Branch }}-{{ .Revision }}
   - run:
       name: Test
-      command: npm run test.record
+      command: yarn test.record
   - run:
       name: Report
-      command: npm run nyc report --reporter=text-lcov > coverage.lcov && codecov -t $CODECOV_TOKEN
+      command: nyc report --reporter=text-lcov > coverage.lcov && codecov -t $CODECOV_TOKEN
 version: 2
 jobs:
   checkout:
