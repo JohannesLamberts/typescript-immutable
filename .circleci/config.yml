@@ -19,13 +19,13 @@ install_and_build: &install_and_build
       name: Build
       command: yarn build
   - save_cache:
-      key: checkout-{{ .Branch }}-{{ .Revision }}
+      key: build-{{ .Branch }}-{{ .Revision }}
       paths:
         - ~/tmp
 test: &test
   - restore_cache:
       keys:
-        - checkout-{{ .Branch }}-{{ .Revision }}
+        - build-{{ .Branch }}-{{ .Revision }}
   - run:
       name: Test
       command: yarn test.record
