@@ -7,7 +7,7 @@ describe('ImmutableArray', function () {
         it('should create an empty instance of ImmutableArray', function () {
             const Arr = new ImmutableArray();
             expect(Arr).to.be.instanceof(ImmutableArray);
-            expect(Arr.isImmutable).to.be.true;
+            expect(Arr.isImmutable).to.equal(true);
             expect(Arr.length).to.equal(0);
         });
         it('should save the initial array if provided', function () {
