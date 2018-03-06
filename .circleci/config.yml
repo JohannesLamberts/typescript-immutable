@@ -33,7 +33,7 @@ test: &test
       command: yarn test.record
   - run:
       name: Report
-      command: nyc report --reporter=text-lcov > coverage.lcov && codecov -t $CODECOV_TOKEN
+      command: yarn nyc report --reporter=text-lcov > coverage.lcov && codecov -t $CODECOV_TOKEN
 version: 2
 jobs:
   checkout:
