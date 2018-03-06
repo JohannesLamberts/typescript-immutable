@@ -28,6 +28,9 @@ test: &test
   - run:
       name: Test
       command: yarn test.record
+  - run:
+      name: Report
+      command: yarn nyc report --reporter=text-lcov > coverage.lcov && yarn codecov -t $CODECOV_TOKEN
 version: 2
 jobs:
   checkout:
