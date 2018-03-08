@@ -1,7 +1,7 @@
-import { ImmutableMapAbstract } from './map';
+import { ImmutableMapBase } from './map';
 
 export class ImmutableMap<TKeys extends string, TInterface>
-    extends ImmutableMapAbstract<TKeys, TInterface, ImmutableMap<TKeys, TInterface>> {
+    extends ImmutableMapBase<TKeys, TInterface, ImmutableMap<TKeys, TInterface>> {
 
     constructor(private _nv: TInterface) {
         super();

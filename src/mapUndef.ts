@@ -1,7 +1,7 @@
-import { ImmutableMapAbstract } from './map';
+import { ImmutableMapBase } from './map';
 
 export class ImmutableMapUndef<TKeys extends string, TInterface>
-    extends ImmutableMapAbstract<TKeys, TInterface, ImmutableMapUndef<TKeys, TInterface>> {
+    extends ImmutableMapBase<TKeys, TInterface, ImmutableMapUndef<TKeys, TInterface>> {
 
     protected _clone(update: Partial<Record<TKeys, TInterface>> = {}): ImmutableMapUndef<TKeys, TInterface> {
         const rec = new ImmutableMapUndef<TKeys, TInterface>();
