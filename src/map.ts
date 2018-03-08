@@ -1,8 +1,8 @@
 import { Immutable } from './immutable';
 
-export abstract class ImmutableMapAbstract<TKeys extends string,
+export abstract class ImmutableMapBase<TKeys extends string,
     TInterface,
-    TThis extends ImmutableMapAbstract<TKeys, TInterface, TThis>> extends Immutable {
+    TThis extends ImmutableMapBase<TKeys, TInterface, TThis>> extends Immutable {
 
     protected _data: Partial<Record<TKeys, TInterface>> = {};
 
