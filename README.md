@@ -15,6 +15,12 @@ This package
 - implements Maps, Records and Arrays.
 - doesn't not have any dependencies.
 
+## Install
+
+`yarn add typescript-immutable`
+
+`npm install typescript-immutable --save`
+
 ## Features
 - Full type-safety
 - If a `initialValue` (`ImmutableRecord`) or `notSetValue` is set (`ImmutableMap`), the type is automatically detected from that value.
